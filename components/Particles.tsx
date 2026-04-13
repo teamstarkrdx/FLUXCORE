@@ -180,7 +180,7 @@ const Particles: React.FC<ParticlesProps> = ({ config, handsDetected = false, ge
     
     // Smoothly interpolate animation state at 60fps
     if (handsDetected && gestureRef) {
-      const targetExp = config.expansion; // Expansion is now handled by camera zoom, so we just use config default
+      const targetExp = gestureRef.current.expansion;
       const lerpSpeed = gestureRef.current.isFist ? 0.15 : 0.08; // Responsive and snappy (60-70% feel)
       currentAnim.current.expansion += (targetExp - currentAnim.current.expansion) * lerpSpeed;
 

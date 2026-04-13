@@ -31,28 +31,9 @@ class HandTrackerErrorBoundary extends Component<{children: ReactNode}, {hasErro
   }
 }
 
-const CameraController = ({ trigger, gestureRef }: { trigger: number, gestureRef: React.MutableRefObject<any> }) => {
+const CameraResetter = ({ trigger }: { trigger: number }) => {
   const { camera, controls } = useThree();
   
-  useFrame(() => {
-    if (gestureRef.current.zoomDelta) {
-      const zoomSpeed = 60; // Reduced sensitivity for smoother pinch zoom
-      camera.translateZ(-gestureRef.current.zoomDelta * zoomSpeed);
-      
-      // Clamp camera distance to prevent going through the object or too far away
-      if (camera.position.length() < 5) {
-        camera.position.setLength(5);
-      } else if (camera.position.length() > 300) {
-        camera.position.setLength(300);
-      }
-
-      if (controls) {
-        (controls as any).update();
-      }
-      gestureRef.current.zoomDelta = 0; // Consume the delta
-    }
-  });
-
   useEffect(() => {
     if (trigger > 0) {
       // Reset camera to initial position
@@ -110,7 +91,7 @@ const App: React.FC = () => {
 
   // Use a ref for high-frequency gesture data to prevent React re-renders
   const gestureRef = useRef({
-    zoomDelta: 0,
+    expansion: 1.0,
     rotX: 0,
     rotY: 0,
     rotZ: 0,
@@ -166,8 +147,8 @@ const App: React.FC = () => {
   };
 
   // Callback for hand gesture updates
-  const handleGestureUpdate = useCallback((gesture: { zoomDelta?: number, rotX: number | null, rotY: number | null, rotZ: number | null, x: number | null, y: number | null, isFist?: boolean, isReset?: boolean, swipeDirection?: 'left' | 'right' | null }) => {
-    if (gesture.zoomDelta) gestureRef.current.zoomDelta += gesture.zoomDelta;
+  const handleGestureUpdate = useCallback((gesture: { expansion: number | null, rotX: number | null, rotY: number | null, rotZ: number | null, x: number | null, y: number | null, isFist?: boolean, isReset?: boolean, swipeDirection?: 'left' | 'right' | null }) => {
+    if (gesture.expansion !== null && gesture.expansion !== undefined) gestureRef.current.expansion = gesture.expansion;
     if (gesture.rotX !== null) gestureRef.current.rotX = gesture.rotX;
     if (gesture.rotY !== null) gestureRef.current.rotY = gesture.rotY;
     if (gesture.rotZ !== null) gestureRef.current.rotZ = gesture.rotZ;
@@ -204,7 +185,7 @@ const App: React.FC = () => {
         lastResetTime.current = now;
         setConfig(DEFAULT_CONFIG);
         setResetTrigger(prev => prev + 1);
-        gestureRef.current = { zoomDelta: 0, rotX: 0, rotY: 0, rotZ: 0, x: 0, y: 0, isFist: false, isReset: false };
+        gestureRef.current = { expansion: 1.0, rotX: 0, rotY: 0, rotZ: 0, x: 0, y: 0, isFist: false, isReset: false };
       }
     }
   }, []);
@@ -229,7 +210,7 @@ const App: React.FC = () => {
             <Particles config={config} handsDetected={handsDetected} gestureRef={gestureRef} />
           </Suspense>
 
-          <CameraController trigger={resetTrigger} gestureRef={gestureRef} />
+          <CameraResetter trigger={resetTrigger} />
 
           <OrbitControls 
             makeDefault
@@ -250,7 +231,7 @@ const App: React.FC = () => {
           fps={fps}
           onReset={() => {
             setResetTrigger(prev => prev + 1);
-            gestureRef.current = { zoomDelta: 0, rotX: 0, rotY: 0, rotZ: 0, x: 0, y: 0, isFist: false, isReset: false };
+            gestureRef.current = { expansion: 1.0, rotX: 0, rotY: 0, rotZ: 0, x: 0, y: 0, isFist: false, isReset: false };
           }}
         />
 

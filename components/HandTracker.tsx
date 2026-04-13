@@ -185,10 +185,10 @@ const HandTracker: React.FC<HandTrackerProps> = ({ onGestureUpdate, onHandsDetec
 
                 // 4. Calculate Outputs based ONLY on Active Mode (Locking Logic)
                 // Default to resetting values when not actively performing the gesture
-                let outZoomDelta = 0; 
-                let outRotX: number | null = 0;
-                let outRotY: number | null = 0;
-                let outRotZ: number | null = 0;
+                let outExpansion: number | null = 1.0; // Reset expansion to normal when not zooming
+                let outRotX: number | null = null; // Lock rotation when not rotating
+                let outRotY: number | null = null;
+                let outRotZ: number | null = null;
                 let outSwipe: 'left' | 'right' | null = null;
                 let outReset = false;
                 let outFist = activeMode === 'snappy_rotate';
@@ -235,12 +235,17 @@ const HandTracker: React.FC<HandTrackerProps> = ({ onGestureUpdate, onHandsDetec
                     const dxPinch = thumbTip.x - indexTip.x;
                     const dyPinch = thumbTip.y - indexTip.y;
                     const pinchDist = Math.sqrt(dxPinch*dxPinch + dyPinch*dyPinch);
-                    if (prevPinchDist.current !== null) {
-                        let delta = pinchDist - prevPinchDist.current;
-                        if (Math.abs(delta) < 0.003) delta = 0; // Deadzone to prevent jitter
-                        outZoomDelta = delta;
-                    }
-                    prevPinchDist.current = pinchDist;
+                    
+                    // Map pinch distance (0.0 to ~0.3) to expansion (0.5 to 5.0)
+                    const minPinch = 0.02;
+                    const maxPinch = 0.25;
+                    const minExp = 0.5;
+                    const maxExp = 5.0;
+                    
+                    let clampedPinch = Math.max(minPinch, Math.min(maxPinch, pinchDist));
+                    let normalizedPinch = (clampedPinch - minPinch) / (maxPinch - minPinch);
+                    outExpansion = minExp + normalizedPinch * (maxExp - minExp);
+                    
                 } else if (activeMode === 'swipe') {
                     prevPinchDist.current = null;
                     const now = Date.now();
@@ -278,12 +283,13 @@ const HandTracker: React.FC<HandTrackerProps> = ({ onGestureUpdate, onHandsDetec
                     swipeState.current.isOpen = false;
                 }
                 
+                // If not in zoom mode, reset pinch anchor so user can ratchet the zoom
                 if (activeMode !== 'zoom') {
                     prevPinchDist.current = null;
                 }
 
                 // Send all data. Null values will be ignored by App.tsx, locking their last state.
-                onGestureUpdate({ zoomDelta: outZoomDelta, rotX: outRotX, rotY: outRotY, rotZ: outRotZ, x, y, isFist: outFist, isReset: outReset, swipeDirection: outSwipe });
+                onGestureUpdate({ expansion: outExpansion, rotX: outRotX, rotY: outRotY, rotZ: outRotZ, x, y, isFist: outFist, isReset: outReset, swipeDirection: outSwipe });
             } else {
                 onHandsDetected(false);
                 prevPinchDist.current = null;
