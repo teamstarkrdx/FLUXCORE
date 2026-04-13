@@ -1,0 +1,7 @@
+{
+  "name": "Cosmic Dust - Interactive 3D Particles",
+  "description": "A real-time interactive 3D particle system built with React, Three.js, and React Three Fiber. Features mouse interaction and customizable simulation parameters.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
