@@ -229,6 +229,9 @@ const Controls: React.FC<ControlsProps> = ({ config, onChange, handsDetected, on
         <h1 className="text-4xl font-black text-white tracking-tighter uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
           Flux<span style={{ color: config.color }}>Core</span>
         </h1>
+        <p className="text-[10px] text-white/40 tracking-widest uppercase mt-0 mb-3 font-mono">
+          Engineered by Rajat Kurdekar
+        </p>
         <div className="flex items-center gap-2 mt-2">
            <div className={clsx("w-1.5 h-1.5 rounded-full", handsDetected ? "bg-green-400 animate-pulse" : "bg-white/30")} />
            <p className="text-white/50 text-[10px] font-mono tracking-widest uppercase">

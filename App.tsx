@@ -103,6 +103,16 @@ const App: React.FC = () => {
   
   const lastResetTime = useRef(0);
 
+  // Developer Signature Console Log
+  useEffect(() => {
+    console.log(
+      "%c🌌 FLUXCORE %c\nEngineered by Rajat Kurdekar\n\n%cView the source or use this app? Keep the attribution alive! ✨",
+      "color: #00FFFF; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px rgba(0,255,255,0.5);",
+      "color: #aaaaaa; font-size: 14px; font-style: italic;",
+      "color: #666666; font-size: 12px;"
+    );
+  }, []);
+
   const handlePreloaderComplete = (songId: string | null) => {
     setSelectedSong(songId);
     setAppState('entering');
