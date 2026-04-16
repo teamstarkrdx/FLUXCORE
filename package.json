@@ -1,5 +1,6 @@
 {
   "name": "cosmic-dust---interactive-3d-particles",
+  "description": "Interactive 3D particle system with AI hand tracking, 8 synchronized audio tracks, and dynamic shape morphing.",
   "private": true,
   "version": "0.0.0",
   "type": "module",

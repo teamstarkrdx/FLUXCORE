@@ -237,7 +237,7 @@ const Controls: React.FC<ControlsProps> = ({ config, onChange, handsDetected, on
         </div>
         {handsDetected && (
            <p className="text-green-400/80 text-[10px] font-mono mt-1 animate-in fade-in slide-in-from-left-2">
-             OPEN/CLOSE HANDS TO EXPAND/SHRINK
+             PINCH FINGERS TO ZOOM | OPEN PALM TO SWIPE | TWO HANDS TO ROTATE
            </p>
         )}
       </div>
@@ -263,8 +263,8 @@ const Controls: React.FC<ControlsProps> = ({ config, onChange, handsDetected, on
                   <li><strong className="text-white">Idle (Relaxed Hand):</strong> If your hand is relaxed and not making a specific gesture, all movement locks perfectly still.</li>
                   <li><strong className="text-white">Rotate (Two Hands):</strong> Hold up <strong>both hands</strong>. Move them up/down to pitch, left/right to turn, or twist them like a steering wheel to roll the object.</li>
                   <li><strong className="text-white">Zoom (Index + Thumb):</strong> Extend only your index and thumb on one hand. Pinch them together or apart to zoom.</li>
-                  <li><strong className="text-white">Swipe Shapes (Open Palm):</strong> With all 5 fingers fully extended on one hand, wave left or right to change shapes.</li>
-                  <li><strong className="text-white">Reset (Middle Finger):</strong> Hold up only your middle finger to instantly reset the scene.</li>
+                  <li><strong className="text-white">Swipe Shapes (Open Palm):</strong> With all 5 fingers fully extended on one hand, wave left or right to switch between shapes.</li>
+                  <li><strong className="text-white">Reset (Peace Sign):</strong> Hold up a peace sign (index and middle fingers extended) to instantly reset the scene and camera.</li>
                   <li><strong className="text-white">Nebula Interaction:</strong> The gravitational repel effect only works with the <strong>mouse pointer</strong>. When using hand tracking, physics are disabled so you have perfect control.</li>
                 </ul>
               </section>

@@ -3,7 +3,7 @@ import { Camera as CameraIcon, AlertCircle, X } from 'lucide-react';
 import clsx from 'clsx';
 
 interface HandTrackerProps {
-  onGestureUpdate: (gesture: { zoomDelta?: number, rotX: number | null, rotY: number | null, rotZ: number | null, x: number | null, y: number | null, isFist?: boolean, isReset?: boolean, swipeDirection?: 'left' | 'right' | null }) => void;
+  onGestureUpdate: (gesture: { expansion?: number | null, rotX: number | null, rotY: number | null, rotZ: number | null, x: number | null, y: number | null, isFist?: boolean, isReset?: boolean, swipeDirection?: 'left' | 'right' | null }) => void;
   onHandsDetected: (detected: boolean) => void;
 }
 

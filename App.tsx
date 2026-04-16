@@ -110,14 +110,14 @@ const App: React.FC = () => {
     // Start audio slightly before transition finishes for a seamless feel
     if (songId && audioRef.current) {
       const songFiles: Record<string, string> = {
-        'golden-hour': '/her.mp3',
-        'interstellar': '/sailor-song.mp3',
-        'sailor-song': '/interstellar.mp3',
-        'her': '/golden-hour.mp3',
-        'sweater-weather': '/priyaphool.mp3',
-        'finding-her': '/ninnanotavu.mp3',
-        'ninna-notavu': '/findingher.mp3',
-        'priya-phool': '/sweatherweather.mp3'
+        'golden-hour': '/golden-hour.mp3',
+        'interstellar': '/interstellar.mp3',
+        'sailor-song': '/sailor-song.mp3',
+        'her': '/her.mp3',
+        'sweater-weather': '/sweatherweather.mp3',
+        'finding-her': '/findingher.mp3',
+        'ninna-notavu': '/ninnanotavu.mp3',
+        'priya-phool': '/priyaphool.mp3'
       };
       
       audioRef.current.src = songFiles[songId] || '';
@@ -178,7 +178,7 @@ const App: React.FC = () => {
       });
     }
 
-    // Handle Reset Gesture (Middle Finger) with a 2-second debounce
+    // Handle Reset Gesture (Peace Sign) with a 2-second debounce
     if (gesture.isReset) {
       const now = Date.now();
       if (now - lastResetTime.current > 2000) {

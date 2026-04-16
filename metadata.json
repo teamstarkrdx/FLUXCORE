@@ -1,6 +1,6 @@
 {
-  "name": "Cosmic Dust - Interactive 3D Particles",
-  "description": "A real-time interactive 3D particle system built with React, Three.js, and React Three Fiber. Features mouse interaction and customizable simulation parameters.",
+  "name": "FLUXCORE",
+  "description": "A real-time interactive 3D particle system built with React and Three.js. Features AI hand tracking, synchronized audio, and customizable shape morphing.",
   "requestFramePermissions": [
     "camera"
   ]

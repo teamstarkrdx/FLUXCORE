@@ -18,7 +18,7 @@ import {
 interface ParticlesProps {
   config: ParticleConfig;
   handsDetected?: boolean;
-  gestureRef?: React.MutableRefObject<{ zoomDelta: number, rotX: number, rotY: number, rotZ: number, x: number, y: number, isFist: boolean }>;
+  gestureRef?: React.MutableRefObject<{ expansion: number, rotX: number, rotY: number, rotZ: number, x: number, y: number, isFist: boolean, isReset: boolean }>;
 }
 
 // --- CUSTOM SHADER MATERIAL ---

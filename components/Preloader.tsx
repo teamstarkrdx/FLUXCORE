@@ -129,7 +129,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
             transition={{ duration: 1 }}
             className="text-center"
           >
-            <h1 className="text-3xl md:text-5xl font-light tracking-widest mb-4">WELCOME TO FLUX CORE</h1>
+            <h1 className="text-3xl md:text-5xl font-light tracking-widest mb-4">WELCOME TO FLUXCORE</h1>
             <p className="text-lg text-white/50 font-light tracking-wide">Thank you for visiting our universe.</p>
           </motion.div>
         )}
