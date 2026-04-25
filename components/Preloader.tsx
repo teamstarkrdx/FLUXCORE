@@ -4,51 +4,51 @@ import { Play, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const SONGS = [
   {
-    id: 'golden-hour',
-    title: 'Golden Hour',
+    id: 'her',
+    title: 'her',
     artist: 'JVKE',
     image: '/img1.jpg'
-  },
-  {
-    id: 'interstellar',
-    title: 'Interstellar x Experience',
-    artist: 'Clavier',
-    image: '/img2.jpg'
   },
   {
     id: 'sailor-song',
     title: 'Sailor Song',
     artist: 'Gigi Perez',
+    image: '/img2.jpg'
+  },
+  {
+    id: 'interstellar',
+    title: 'Interstellar x Experience',
+    artist: 'Clavier',
     image: '/img3.jpg'
   },
   {
-    id: 'her',
-    title: 'her',
+    id: 'golden-hour',
+    title: 'Golden Hour',
     artist: 'JVKE',
     image: '/img4.jpg'
-  },
-  {
-    id: 'sweater-weather',
-    title: 'Sweater Weather',
-    artist: 'The Neighbourhood',
-    image: '/sweater-weather.jpg'
-  },
-  {
-    id: 'finding-her',
-    title: 'Finding Her',
-    artist: 'Kushagra, Bharath, Saaheal',
-    image: '/finding-her.jpg'
-  },
-  {
-    id: 'ninna-notavu',
-    title: 'Ninna Notavu',
-    artist: 'Tanmay Gururaj',
-    image: '/ninna-notavu.jpg'
   },
   {
     id: 'priya-phool',
     title: 'Priya Phool',
     artist: 'Kobid Bazra, Bikesh Bazra, Deepson Putuwar, Kriti Nepali, Sujan Chapagain',
+    image: '/sweater-weather.jpg'
+  },
+  {
+    id: 'ninna-notavu',
+    title: 'Ninna Notavu',
+    artist: 'Tanmay Gururaj',
+    image: '/finding-her.jpg'
+  },
+  {
+    id: 'finding-her',
+    title: 'Finding Her',
+    artist: 'Kushagra, Bharath, Saaheal',
+    image: '/ninna-notavu.jpg'
+  },
+  {
+    id: 'sweater-weather',
+    title: 'Sweater Weather',
+    artist: 'The Neighbourhood',
     image: '/priya-phool.jpg'
   }
 ];
